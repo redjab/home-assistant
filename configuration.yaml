@@ -15,7 +15,80 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
+history:
+  exclude:
+    entities:
+      - sensor.time
+      - sensor.date
+      - sensor.date_time
+      - sensor.date_time_utc
+      - sensor.date_time_iso
+      - sensor.time_date
+      - sensor.time_utc
+      - sensor.internet_time
+
+recorder:
+  exclude:
+    entities:
+      - sensor.time
+      - sensor.date
+      - sensor.date_time
+      - sensor.date_time_utc
+      - sensor.date_time_iso
+      - sensor.time_date
+      - sensor.time_utc
+      - sensor.internet_time
+
+wake_on_lan:
+
 notify:
   - platform: discord
     name: discord
     token: !secret discord_token
+
+webostv:
+  - name: Living Room TV
+    host: 192.168.1.22
+    turn_on_action:
+      service: wake_on_lan.send_magic_packet
+      data:
+        mac: 2C-2B-F9-E6-1E-92
+
+sensor:
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      - 'date_time'
+      - 'date_time_utc'
+      - 'date_time_iso'
+      - 'time_date'
+      - 'time_utc'
+      - 'beat'
+
+hangouts:
+  intents:
+    HangoutsHelp:
+      sentences:
+        - Help
+    Ping:
+      sentences:
+        - How many Conversation do you know
+    Test:
+      sentences:
+        - Test
+  default_conversations:
+    - id: "UgzF-v3X32B8mB9cN4d4AaABAagB8f-iAg"
+    
+intent_script:
+  Ping:
+    action:
+      service: notify.discord
+      data:
+        message: "I know {{ states('hangouts.conversations') }} conversations"
+        target: ["708104335996747848"]
+  Test:
+    speech:
+      text: It is {{ states('sensor.date_time') }}
+
+
