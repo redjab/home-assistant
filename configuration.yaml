@@ -45,6 +45,10 @@ notify:
   - platform: discord
     name: discord
     token: !secret discord_token
+  - platform: hangouts
+    name: hangouts
+    default_conversations:
+      - id: "UgzF-v3X32B8mB9cN4d4AaABAagB8f-iAg"
 
 webostv:
   - name: Living Room TV
