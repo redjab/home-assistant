@@ -13,7 +13,7 @@
   alias: Reconnect hangout
   description: ''
   trigger:
-  - hours: '1'
+  - minutes: '1'
     platform: time_pattern
   condition: []
   action:
