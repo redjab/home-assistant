@@ -7,6 +7,8 @@
 !.gitignore
 !*.md
 !*.sh
+!.vscode
+!.vscode/**
 
 # Ignore folders.
 .storage
