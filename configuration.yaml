@@ -3,8 +3,10 @@
 default_config:
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-# http:
-#   base_url: example.duckdns.org:8123
+http:
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
+
 
 # Text to speech
 tts:
@@ -40,6 +42,9 @@ recorder:
       - sensor.internet_time
 
 wake_on_lan:
+
+google_assistant:
+  project_id: debian-home-server
 
 notify:
   - platform: discord
