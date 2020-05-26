@@ -63,6 +63,11 @@ notify:
     name: hangouts
     default_conversations:
       - id: "UgzF-v3X32B8mB9cN4d4AaABAagB8f-iAg"
+  - platform: group
+    name: all_phone_app
+    services:
+      - service: !secret mobile_app_1_phone
+      - service: !secret mobile_app_2_phone
 
 webostv:
   - name: Living Room TV
