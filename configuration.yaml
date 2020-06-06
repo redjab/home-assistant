@@ -85,10 +85,14 @@ webostv:
       data:
         mac: 2C-2B-F9-E6-1E-92
 
-vacuum:
-  - platform: xiaomi_miio
-    host: 192.168.1.35
-    token: !secret roborock_token
+mqtt:
+  broker: 192.168.1.38
+  port: 1883
+  client_id: home-assistant
+  username: !secret mqtt_user
+  password: !secret mqtt_pwd
+  discovery: true
+  discovery_prefix: homeassistant
 
 sensor:
   - platform: time_date
