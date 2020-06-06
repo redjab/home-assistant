@@ -77,6 +77,11 @@ webostv:
       data:
         mac: 2C-2B-F9-E6-1E-92
 
+vacuum:
+  - platform: xiaomi_miio
+    host: 192.168.1.35
+    token: !secret roborock_token
+
 sensor:
   - platform: time_date
     display_options:
