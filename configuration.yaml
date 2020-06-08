@@ -44,6 +44,10 @@ recorder:
       - sensor.time_utc
       - sensor.internet_time
 
+homeassistant:
+  external_url: !secret external_url
+  internal_url: !secret internal_url
+
 panel_iframe:
  nodered:
    title: 'Node-Red'
