@@ -83,11 +83,11 @@ notify:
 
 webostv:
   - name: Living Room TV
-    host: 192.168.1.22
+    host: 192.168.1.44
     turn_on_action:
       service: wake_on_lan.send_magic_packet
       data:
-        mac: 2C-2B-F9-E6-1E-92
+        mac: 20-17-42-20-4B-EB
 
 mqtt:
   broker: 192.168.1.38
@@ -97,6 +97,11 @@ mqtt:
   password: !secret mqtt_pwd
   discovery: true
   discovery_prefix: homeassistant
+
+camera:
+  - platform: local_file
+    file_path: !secret mail_images_path
+    name: mail_usps
 
 sensor:
   - platform: time_date
@@ -110,29 +115,10 @@ sensor:
       - 'time_utc'
       - 'beat'
 
-hangouts:
-  intents:
-    HangoutsHelp:
-      sentences:
-        - Help
-    Ping:
-      sentences:
-        - How many Conversation do you know
-    Test:
-      sentences:
-        - Test
-  default_conversations:
-    - id: "UgzF-v3X32B8mB9cN4d4AaABAagB8f-iAg"
-    
-intent_script:
-  Ping:
-    action:
-      service: notify.discord
-      data:
-        message: "I know {{ states('hangouts.conversations') }} conversations"
-        target: ["708104335996747848"]
-  Test:
-    speech:
-      text: It is {{ states('sensor.date_time') }}
-
-
+binary_sensor:
+  - platform: template
+    sensors:
+      minh_home:
+        friendly_name: "Minh Home"
+        value_template: >-
+          {{ is_state('device_tracker.phone_m', 'home') or is_state('person.minh', 'home') }}
