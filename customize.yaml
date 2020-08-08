@@ -1,0 +1,6 @@
+sensor.internet_daily:
+  icon: mdi:chart-areaspline
+sensor.internet_hourly:
+  icon: mdi:chart-areaspline
+sensor.internet_monthly:
+  icon: mdi:chart-areaspline
