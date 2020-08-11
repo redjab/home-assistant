@@ -4,3 +4,6 @@ sensor.internet_hourly:
   icon: mdi:chart-areaspline
 sensor.internet_monthly:
   icon: mdi:chart-areaspline
+switch.living_room_light:
+  icon: mdi:lightbulb
+sensor.router_uptime: {}
