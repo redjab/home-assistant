@@ -7,3 +7,6 @@ sensor.internet_monthly:
 switch.living_room_light:
   icon: mdi:lightbulb
 sensor.router_uptime: {}
+zone.home:
+  editable: true
+  radius: 150

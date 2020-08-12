@@ -86,6 +86,8 @@ recorder:
       - sensor.time_date
       - sensor.time_utc
       - sensor.internet_time
+      - !secret mobile_app_1_location
+      - !secret mobile_app_2_location
 
 homeassistant:
   external_url: !secret external_url
@@ -111,13 +113,20 @@ wake_on_lan:
 google_assistant:
   project_id: debian-home-server
 
-  webostv:
-  - name: Living Room TV
-    host: 192.168.1.44
-    turn_on_action:
-      service: wake_on_lan.send_magic_packet
-      data:
-        mac: 20-17-42-20-4B-EB
+webostv:
+- name: Living Room TV
+  host: 192.168.1.44
+  turn_on_action:
+    service: wake_on_lan.send_magic_packet
+    data:
+      mac: 20-17-42-20-4B-EB
+
+notify:
+  - platform: group
+    name: all_phone_app
+    services:
+      - service: !secret mobile_app_1_phone
+      - service: !secret mobile_app_2_phone
 
 mqtt:
   broker: 192.168.1.38
