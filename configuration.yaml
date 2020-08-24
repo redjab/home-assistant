@@ -113,6 +113,13 @@ wake_on_lan:
 google_assistant:
   project_id: debian-home-server
 
+zwave:
+  usb_path: /dev/ttyUSB0
+  network_key: !secret zwave_key
+
+zha:
+  database_path: /config/zigbee.db
+
 webostv:
 - name: Living Room TV
   host: 192.168.1.44
@@ -265,10 +272,6 @@ sensor:
     entity_id: sensor.wan_in
     max_age:
       days: 31
-
-tplink:
-  switch:
-    - host: 192.168.1.56
 
 utility_meter:
   utility_internet_hourly:

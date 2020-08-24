@@ -1,1 +1,25 @@
-[]
+- id: '1598234322364'
+  alias: Turn on After Dark Offset Input boolean
+  description: ''
+  trigger:
+  - event: sunset
+    offset: -01:00:00
+    platform: sun
+  condition: []
+  action:
+  - data: {}
+    entity_id: input_boolean.after_dark_offset
+    service: input_boolean.turn_on
+  mode: single
+- id: '1598234378623'
+  alias: Turn Off After Dark Offset boolean
+  description: ''
+  trigger:
+  - event: sunrise
+    platform: sun
+  condition: []
+  action:
+  - data: {}
+    entity_id: input_boolean.after_dark_offset
+    service: input_boolean.turn_off
+  mode: single
