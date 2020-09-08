@@ -1,0 +1,11 @@
+first_floor_lights:
+  name: First Floor Lights
+  entities:
+    - switch.cabinet_light
+    - light.living_room
+
+second_floor_lights:
+  name: Second Floor Lights
+  entities:
+    - switch.hallway_light
+    - light.master_bedroom
