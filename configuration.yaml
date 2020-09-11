@@ -256,6 +256,10 @@ sensor:
         unit_of_measurement: GB
         value_template: >-
           {{ (states('sensor.utility_internet_monthly')|float)|round(2) }}
+  - platform: command_line
+    name: IP Address
+    command: "dig +short myip.opendns.com @resolver1.opendns.com"
+    scan_interval: 7200
 
   - platform: statistics
     name: wan_in_hour
