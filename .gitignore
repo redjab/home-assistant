@@ -19,3 +19,6 @@
 ip_bans.yaml
 secrets.yaml
 known_devices.yaml
+
+# Other creds files
+debian-home-server-token*.json
