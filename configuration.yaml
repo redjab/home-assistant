@@ -8,7 +8,7 @@ http:
   login_attempts_threshold: 5
   use_x_forwarded_for: true
   trusted_proxies:
-    - 172.18.0.4 # nginx container ip
+    - 172.18.0.0/24 # nginx container ip
     - 192.168.1.0/24 #Router IP
 
 # Text to speech
@@ -173,6 +173,13 @@ sensor:
       - 'time_date'
       - 'time_utc'
       - 'beat'
+  # - platform: govee_ble_hci
+  #   govee_devices:
+      # - mac: !secret govee_humidity_sensor_mac_1
+      #   name: Bedroom
+      # - mac: !secret govee_humidity_sensor_mac_2
+      #   name: Bathroom
+      #   hcitool_active: true
   - platform: systemmonitor
     resources:
       - type: disk_use_percent
