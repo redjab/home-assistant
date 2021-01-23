@@ -1,0 +1,12 @@
+- id: '1611381601642'
+  name: Good night
+  entities:
+    cover.garage_door:
+      state: closed
+    group.first_floor_lights:
+      state: 'off'
+    group.second_floor_lights:
+      state: 'off'
+    lock.back_door:
+      state: locked
+  icon: mdi:moon

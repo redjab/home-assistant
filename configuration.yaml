@@ -125,6 +125,7 @@ google_assistant:
     - cover
     - lock
     - group
+    - scene
 
 zwave:
   usb_path: /dev/ttyUSB0
