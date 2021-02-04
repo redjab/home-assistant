@@ -9,4 +9,6 @@
       state: 'off'
     lock.back_door:
       state: locked
+    media_player.living_room_tv:
+      state: 'off'
   icon: mdi:moon

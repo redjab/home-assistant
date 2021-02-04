@@ -148,6 +148,7 @@ notify:
     services:
       - service: !secret mobile_app_1_phone
       - service: !secret mobile_app_2_phone
+      - service: !secret mobile_app_3_phone
 
 mqtt:
   broker: 192.168.1.38
@@ -239,7 +240,7 @@ sensor:
           {{ state_attr('lock.back_door', 'lock_status') }}
       minh_home:
         value_template: >-
-          {{ is_state('device_tracker.phone_m', 'home') or is_state('person.minh', 'home') }}
+          {{ is_state('device_tracker.phone_m_4a5g', 'home') or is_state('person.minh', 'home') }}
       router_up_time_hours:
         friendly_name: 'Router uptime - Hours'
         value_template: >-
