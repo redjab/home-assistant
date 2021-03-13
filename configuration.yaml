@@ -159,6 +159,10 @@ mqtt:
   discovery: true
   discovery_prefix: homeassistant
 
+winix:
+  username: !secret winix_email
+  password: !secret winix_password
+
 camera:
   - platform: local_file
     file_path: !secret mail_images_path
