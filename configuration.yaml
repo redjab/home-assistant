@@ -163,11 +163,6 @@ winix:
   username: !secret winix_email
   password: !secret winix_password
 
-camera:
-  - platform: local_file
-    file_path: !secret mail_images_path
-    name: mail_usps
-
 sensor:
   - platform: time_date
     display_options:
