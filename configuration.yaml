@@ -102,6 +102,10 @@ panel_iframe:
    title: 'Node-Red'
    icon: 'mdi:shuffle-variant'
    url: !secret nodered_url
+ octoprint:
+   title: 'Octoprint'
+   icon: 'mdi:printer-3d'
+   url: !secret octoprint_url
  unifi:
    title: 'Unifi'
    icon: 'mdi:wifi'
@@ -112,6 +116,14 @@ panel_iframe:
    url: !secret roborock_url
 
 wake_on_lan:
+
+stream:
+
+camera:
+- platform: mjpeg
+  name: Voxelab Aquila stream
+  still_image_url: !secret octoprint_still_image_url
+  mjpeg_url: !secret octoprint_mjpeg_url
 
 google_assistant:
   project_id: debian-home-server
@@ -134,6 +146,21 @@ zwave:
 zha:
   database_path: /config/zigbee.db
 
+octoprint:
+  host: !secret octoprint_host
+  api_key: !secret octoprint_api_key
+  port: 81
+  name: Voxelab Aquila
+  number_of_tools: 1
+  bed: true
+  sensors:
+    monitored_conditions:
+      - 'Current State'
+      - 'Temperatures'
+      - 'Job Percentage'
+      - 'Time Elapsed'
+      - 'Time Remaining'
+
 webostv:
 - name: Living Room TV
   host: 192.168.1.44
@@ -148,7 +175,6 @@ notify:
     services:
       - service: !secret mobile_app_1_phone
       - service: !secret mobile_app_2_phone
-      - service: !secret mobile_app_3_phone
 
 mqtt:
   broker: 192.168.1.38
