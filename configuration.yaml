@@ -47,6 +47,12 @@ logbook:
       - sensor.router_up_time
       - sensor.router_up_time_hours
       - sensor.router_up_time_days
+      - sensor.octoprint_print_time_left
+      - sensor.octoprint_print_time
+      - sensor.octoprint_print_progress
+      - sensor.octoprint_slicing_progress
+      - sensor.octoprint_current_z
+      - sensor.octoprint_print_time_done_at
 
 history:
   exclude:
@@ -77,6 +83,18 @@ history:
       - sensor.router_up_time
       - sensor.router_up_time_hours
       - sensor.router_up_time_days
+      - sensor.octoprint_print_time_left
+      - sensor.octoprint_print_time
+      - sensor.octoprint_print_progress
+      - sensor.octoprint_slicing_progress
+      - sensor.octoprint_current_z
+      - sensor.octoprint_print_time_done_at
+    entity_globs:
+      - input_boolean.plant*
+      - input_number.plant*
+      - input_datetime.plant*
+      - sensor.mail*
+      - sensor.disk*
 
 recorder:
   exclude:
@@ -91,6 +109,10 @@ recorder:
       - sensor.internet_time
       - !secret mobile_app_1_location
       - !secret mobile_app_2_location
+    entity_globs:  
+      - sensor.*phone*
+      - sensor.*pixel*
+      - sensor.hp_officejet*
 
 homeassistant:
   external_url: !secret external_url
