@@ -55,8 +55,11 @@
 
     octoprint_print_time_done_at:
       value_template: >-
-        {% set times = states('sensor.octoprint_print_time_left').split(':') %}
-        {% set seconds =  (times[0] | int) * 60 * 60 + (times[1] | int) * 60 + (times[2] | int) %}
-        {{ (as_timestamp(now()) + seconds) | timestamp_local }}
-
+        {% if states('sensor.octoprint_print_time_left') is string -%}
+          {% set times = states('sensor.octoprint_print_time_left').split(':') %}
+            {% if times | length >= 3 -%}
+              {% set seconds =  (times[0] | int) * 60 * 60 + (times[1] | int) * 60 + (times[2] | int) %}
+              {{ (as_timestamp(now()) + seconds) | timestamp_local }}
+            {%- endif %}
+        {%- endif %}
       
