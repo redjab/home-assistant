@@ -128,6 +128,10 @@ panel_iframe:
    title: 'Octoprint'
    icon: 'mdi:printer-3d'
    url: !secret octoprint_url
+ zwave:
+   title: 'Zwave'
+   icon: 'mdi:z-wave'
+   url: !secret zwave_url
  unifi:
    title: 'Unifi'
    icon: 'mdi:wifi'

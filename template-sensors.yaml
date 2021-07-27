@@ -1,9 +1,5 @@
 - platform: template
   sensors:
-    back_door_status:
-      friendly_name: Back door status
-      value_template: >-
-        {{ state_attr('lock.back_door', 'lock_status') }}
 
     minh_home:
       value_template: >-
