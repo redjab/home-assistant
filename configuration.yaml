@@ -23,6 +23,8 @@ scene: !include scenes.yaml
 frontend:
   themes: !include_dir_merge_named themes
 
+media_source:
+
 logger:
   default: warning
 
@@ -177,11 +179,24 @@ webostv:
       mac: 20-17-42-20-4B-EB
 
 notify:
+  - platform: html5
+    name: chrome
+    vapid_pub_key: !secret html_pub_key
+    vapid_prv_key: !secret html_private_key
+    vapid_email: !secret html_email
+
   - platform: group
     name: all_phone_app
     services:
       - service: !secret mobile_app_1_phone
       - service: !secret mobile_app_2_phone
+      - service: chrome
+
+  - platform: group
+    name: m_only
+    services:
+      - service: !secret mobile_app_1_phone
+      - service: chrome
 
 mqtt:
   broker: 192.168.1.38
