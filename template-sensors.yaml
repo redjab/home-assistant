@@ -16,38 +16,38 @@
 
     wan_in_mb:
       value_template: >-
-        {{ states('sensor.wan_in')|float/1000000 }}
+        {{ states('sensor.wan_in')|float(default=0)/1000000 }}
     wan_out_mb:
       value_template: >-
-        {{ states('sensor.wan_out')|float/1000000 }}
+        {{ states('sensor.wan_out')|float(default=0)/1000000 }}
     wan_in_gb:
       value_template: >-
-        {{ states('sensor.wan_in_mb')|float/1000 }}
+        {{ states('sensor.wan_in_mb')|float(default=0)/1000 }}
     wan_out_gb:
       value_template: >-
-        {{ states('sensor.wan_out_mb')|float/1000 }}
+        {{ states('sensor.wan_out_mb')|float(default=0)/1000 }}
     wan_mb:
       value_template: >-
-        {{ states('sensor.wan_in_mb')|float + states('sensor.wan_out_mb')|float }}
+        {{ states('sensor.wan_in_mb')|float(default=0) + states('sensor.wan_out_mb')|float(default=0) }}
     wan_gb:
       value_template: >-
-        {{ states('sensor.wan_in_gb')|float + states('sensor.wan_out_gb')|float }}
+        {{ states('sensor.wan_in_gb')|float(default=0) + states('sensor.wan_out_gb')|float(default=0) }}
 
     internet_hourly:
       friendly_name: Hourly Internet Usage
       unit_of_measurement: MB
       value_template: >-
-        {{ (states('sensor.utility_internet_hourly')|float)|round(2) }}
+        {{ (states('sensor.utility_internet_hourly')|float(default=0))|round(2) }}
     internet_daily:
       friendly_name: Daily Internet Usage
       unit_of_measurement: GB
       value_template: >-
-        {{ (states('sensor.utility_internet_daily')|float)|round(2) }}
+        {{ (states('sensor.utility_internet_daily')|float(default=0))|round(2) }}
     internet_monthly:
       friendly_name: Monthly Internet Usage
       unit_of_measurement: GB
       value_template: >-
-        {{ (states('sensor.utility_internet_monthly')|float)|round(2) }}
+        {{ (states('sensor.utility_internet_monthly')|float(default=0))|round(2) }}
 
     octoprint_print_time_done_at:
       value_template: >-
