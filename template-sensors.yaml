@@ -5,6 +5,10 @@
       value_template: >-
         {{ is_state('device_tracker.phone_m_4a5g', 'home') or is_state('person.minh', 'home') }}
 
+    away:
+      value_template: >-
+        {{ is_state('person.minh', 'not_home') and is_state('person.quynh_anh', 'not_home') }}
+
     router_up_time_hours:
       friendly_name: 'Router uptime - Hours'
       value_template: >-
@@ -59,3 +63,17 @@
             {%- endif %}
         {%- endif %}
       
+    upstairs_thermostat_hvac_action:
+      value_template: >-
+        {{ state_attr('climate.upstairs_thermostat', 'hvac_action') }}
+    upstairs_thermostat_current_temperature:
+      value_template: >-
+        {{ state_attr('climate.upstairs_thermostat', 'current_temperature') }}
+      unit_of_measurement: "°C"
+    upstairs_thermostat_target_temperature:
+      value_template: >-
+        {{ state_attr('climate.upstairs_thermostat', 'temperature') }}
+      unit_of_measurement: "°C"
+    upstairs_thermostat_fan_state:
+      value_template: >-
+        {{ state_attr('climate.upstairs_thermostat', 'fan_state') }}

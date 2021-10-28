@@ -167,6 +167,14 @@ google_assistant:
     - group
     - scene
 
+weather:
+  - platform: pirateweather
+    api_key: !secret pirateweather_api_key
+    latitude: !secret lat
+    longitude: !secret long
+    mode: "hourly"
+    name: Weather
+
 zha:
   database_path: /config/zigbee.db
 
