@@ -77,3 +77,18 @@
     upstairs_thermostat_fan_state:
       value_template: >-
         {{ state_attr('climate.upstairs_thermostat', 'fan_state') }}
+
+    downstairs_thermostat_hvac_action:
+      value_template: >-
+        {{ state_attr('climate.downstairs_thermostat', 'hvac_action') }}
+    downstairs_thermostat_current_temperature:
+      value_template: >-
+        {{ state_attr('climate.downstairs_thermostat', 'current_temperature') }}
+      unit_of_measurement: "°C"
+    downstairs_thermostat_target_temperature:
+      value_template: >-
+        {{ state_attr('climate.downstairs_thermostat', 'temperature') }}
+      unit_of_measurement: "°C"
+    downstairs_thermostat_fan_state:
+      value_template: >-
+        {{ state_attr('climate.downstairs_thermostat', 'fan_state') }}
