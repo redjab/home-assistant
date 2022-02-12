@@ -22,6 +22,8 @@ scene: !include scenes.yaml
 
 frontend:
   themes: !include_dir_merge_named themes
+  extra_module_url:
+    - /hacsfiles/lovelace-card-mod/card-mod.js
 
 media_source:
 
@@ -301,16 +303,19 @@ sensor:
 - platform: statistics
   name: wan_in_hour
   entity_id: sensor.wan_in
+  state_characteristic: mean
   max_age:
     hours: 1
 - platform: statistics
   name: wan_in_day
   entity_id: sensor.wan_in
+  state_characteristic: mean
   max_age:
     days: 1
 - platform: statistics
   name: wan_in_month
   entity_id: sensor.wan_in
+  state_characteristic: mean
   max_age:
     days: 31
       

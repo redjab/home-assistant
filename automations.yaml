@@ -23,3 +23,13 @@
     entity_id: input_boolean.after_dark_offset
     service: input_boolean.turn_off
   mode: single
+
+- id: '1598234378624'
+  alias: WebOS wake
+  trigger:
+    - platform: webostv.turn_on
+      entity_id: media_player.living_room_tv
+  action:
+    - service: wake_on_lan.send_magic_packet
+      data:
+        mac: 20-17-42-20-4B-EB
