@@ -206,13 +206,15 @@ notify:
             image: ''
 
   - platform: group
+    name: all_phone_app_except_chrome
+    services:
+      - service: !secret mobile_app_1_phone
+      - service: !secret mobile_app_2_phone
+
+  - platform: group
     name: m_only
     services:
       - service: !secret mobile_app_1_phone
-      - service: chrome
-        data:
-          data:
-            image: ''
 
 mqtt:
   broker: 192.168.1.38

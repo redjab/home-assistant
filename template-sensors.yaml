@@ -7,7 +7,7 @@
 
     away:
       value_template: >-
-        {{ is_state('person.minh', 'not_home') and is_state('person.quynh_anh', 'not_home') }}
+        {{ not is_state('person.minh', 'home') and not is_state('person.quynh_anh', 'home') }}
 
     router_up_time_hours:
       friendly_name: 'Router uptime - Hours'
