@@ -136,6 +136,10 @@ panel_iframe:
    title: 'Zwave'
    icon: 'mdi:z-wave'
    url: !secret zwave_url
+ zigbee:
+   title: 'Zigbee'
+   icon: 'mdi:zigbee'
+   url: !secret zigbee_url
  unifi:
    title: 'Unifi'
    icon: 'mdi:wifi'
@@ -149,11 +153,11 @@ wake_on_lan:
 
 stream:
 
-camera:
-- platform: mjpeg
-  name: Voxelab Aquila stream
-  still_image_url: !secret octoprint_still_image_url
-  mjpeg_url: !secret octoprint_mjpeg_url
+# camera:
+# - platform: mjpeg
+#   name: Voxelab Aquila stream
+#   still_image_url: !secret octoprint_still_image_url
+#   mjpeg_url: !secret octoprint_mjpeg_url
 
 google_assistant:
   project_id: debian-home-server
@@ -168,6 +172,12 @@ google_assistant:
     - lock
     - group
     - scene
+  entity_config:
+    switch.modem:
+      expose: false
+    switch.3d_printer:
+      expose: false
+
 
 weather:
   - platform: pirateweather
@@ -176,17 +186,6 @@ weather:
     longitude: !secret long
     mode: "hourly"
     name: Weather
-
-zha:
-  database_path: /config/zigbee.db
-
-webostv:
-- name: Living Room TV
-  host: 192.168.1.44
-  turn_on_action:
-    service: wake_on_lan.send_magic_packet
-    data:
-      mac: 20-17-42-20-4B-EB
 
 notify:
   - platform: html5
@@ -216,14 +215,14 @@ notify:
     services:
       - service: !secret mobile_app_1_phone
 
-mqtt:
-  broker: 192.168.1.38
-  port: 1883
-  client_id: home-assistant
-  username: !secret mqtt_user
-  password: !secret mqtt_pwd
-  discovery: true
-  discovery_prefix: homeassistant
+# mqtt:
+  # broker: 192.168.1.38
+  # port: 1883
+  # client_id: home-assistant
+  # username: !secret mqtt_user
+  # password: !secret mqtt_pwd
+  # discovery: true
+  # discovery_prefix: homeassistant
 
 winix:
   username: !secret winix_email
@@ -306,18 +305,21 @@ sensor:
   name: wan_in_hour
   entity_id: sensor.wan_in
   state_characteristic: mean
+  sampling_size: 20
   max_age:
     hours: 1
 - platform: statistics
   name: wan_in_day
   entity_id: sensor.wan_in
   state_characteristic: mean
+  sampling_size: 20
   max_age:
     days: 1
 - platform: statistics
   name: wan_in_month
   entity_id: sensor.wan_in
   state_characteristic: mean
+  sampling_size: 20
   max_age:
     days: 31
       

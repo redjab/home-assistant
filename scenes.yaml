@@ -7,6 +7,8 @@
       state: 'off'
     group.second_floor_lights:
       state: 'off'
+    switch.plants_master_bedroom:
+      state: 'off'
     lock.back_door:
       state: locked
     media_player.living_room_tv:
