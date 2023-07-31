@@ -51,12 +51,9 @@ logbook:
       - sensor.router_up_time
       - sensor.router_up_time_hours
       - sensor.router_up_time_days
-      - sensor.octoprint_print_time_left
-      - sensor.octoprint_print_time
-      - sensor.octoprint_print_progress
-      - sensor.octoprint_slicing_progress
-      - sensor.octoprint_current_z
-      - sensor.octoprint_print_time_done_at
+    entity_globs:  
+      - sensor.octoprint_*
+      - switch.*_led
 
 history:
   exclude:
@@ -94,11 +91,9 @@ history:
       - sensor.octoprint_current_z
       - sensor.octoprint_print_time_done_at
     entity_globs:
-      - input_boolean.plant*
-      - input_number.plant*
-      - input_datetime.plant*
       - sensor.mail*
       - sensor.disk*
+      - switch.*_led
 
 recorder:
   exclude:
@@ -117,11 +112,16 @@ recorder:
       - sensor.*phone*
       - sensor.*pixel*
       - sensor.hp_officejet*
+      - sensor.octoprint_*
+      - switch.*_led
 
 homeassistant:
   external_url: !secret external_url
   internal_url: !secret internal_url
   customize: !include customize.yaml
+  currency: USD
+  country: US
+  packages: !include_dir_named packages
 
 panel_iframe:
  nodered:
@@ -158,6 +158,13 @@ stream:
 #   name: Voxelab Aquila stream
 #   still_image_url: !secret octoprint_still_image_url
 #   mjpeg_url: !secret octoprint_mjpeg_url
+
+input_select: !include input_select.yaml
+input_boolean: !include input_boolean.yaml
+input_button: !include input_button.yaml
+input_number: !include input_number.yaml
+input_text: !include input_text.yaml
+input_datetime: !include input_datetime.yaml
 
 google_assistant:
   project_id: debian-home-server
@@ -215,6 +222,16 @@ notify:
     services:
       - service: !secret mobile_app_1_phone
 
+  - platform: group
+    name: qa_only
+    services:
+      - service: !secret mobile_app_2_phone
+
+  - platform: group
+    name: guest_only
+    services:
+      - service: !secret mobile_app_guest
+
 # mqtt:
   # broker: 192.168.1.38
   # port: 1883
@@ -224,9 +241,15 @@ notify:
   # discovery: true
   # discovery_prefix: homeassistant
 
-winix:
-  username: !secret winix_email
-  password: !secret winix_password
+# winix:
+#   username: !secret winix_email
+#   password: !secret winix_password
+
+command_line:
+  - sensor:
+      name: IP Address
+      command: "dig +short myip.opendns.com @resolver1.opendns.com"
+      scan_interval: 7200
 
 sensor:
 - platform: time_date
@@ -296,10 +319,6 @@ sensor:
   priv_protocol: !secret snmp_priv_protocol
   accept_errors: true
   scan_interval: 60
-- platform: command_line
-  name: IP Address
-  command: "dig +short myip.opendns.com @resolver1.opendns.com"
-  scan_interval: 7200
 
 - platform: statistics
   name: wan_in_hour

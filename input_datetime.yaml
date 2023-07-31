@@ -1,0 +1,25 @@
+plant_alocasia_macrorrhizos:
+    name: Alocasia Macrorrhizos last watered
+    icon: mdi:water
+    has_date: true
+    has_time: true
+
+plant_grey_star_calathea:
+    name: Grey Star Calathea last watered
+    has_date: true
+    has_time: true
+
+plant_string_of_pearls:
+    name: String of Pearls last watered
+    has_date: true
+    has_time: true
+
+plant_rhaphidophora_tetrasperma:
+    name: Rhaphidophora Tetrasperma last watered
+    has_date: true
+    has_time: true
+
+plant_calathea_unknown:
+    name: Calathea Unknown last watered
+    has_date: true
+    has_time: true

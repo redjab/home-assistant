@@ -1,0 +1,19 @@
+plant_alocasia_macrorrhizos:
+    name: Alocasia Macrorrhizos
+    icon: mdi:leaf
+
+plant_grey_star_calathea:
+    name: Grey Star Calathea
+    icon: mdi:leaf
+
+plant_string_of_pearls:
+    name: String of Pearls
+    icon: mdi:leaf
+
+plant_rhaphidophora_tetrasperma:
+    name: Rhaphidophora Tetrasperma
+    icon: mdi:leaf
+
+plant_calathea_unknown:
+    name: Calathea Unknown
+    icon: mdi:leaf

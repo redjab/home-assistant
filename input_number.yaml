@@ -1,0 +1,34 @@
+plant_alocasia_macrorrhizos:
+    name: Alocasia Macrorrhizos days
+    mode: box
+    max: 40
+    min: 3
+    step: 1
+
+plant_grey_star_calathea:
+    name: Grey Star Calathea days
+    mode: box
+    max: 40
+    min: 3
+    step: 1
+
+plant_string_of_pearls:
+    name: String of Pearls days
+    mode: box
+    max: 40
+    min: 3
+    step: 1
+
+plant_rhaphidophora_tetrasperma:
+    name: Rhaphidophora Tetrasperma days
+    mode: box
+    max: 40
+    min: 3
+    step: 1
+
+plant_calathea_unknown:
+    name: Calathea Unknown days
+    mode: box
+    max: 40
+    min: 3
+    step: 1

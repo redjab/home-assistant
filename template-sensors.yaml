@@ -7,7 +7,11 @@
 
     away:
       value_template: >-
-        {{ not is_state('person.minh', 'home') and not is_state('person.quynh_anh', 'home') }}
+        {% if is_state("input_boolean.guest_mode", "on") -%}
+          {{ not is_state('person.guest', 'home') }}
+        {%- else -%}
+          {{ not is_state('person.minh', 'home') and not is_state('person.quynh_anh', 'home') }}
+        {%- endif %}
 
     router_up_time_hours:
       friendly_name: 'Router uptime - Hours'
@@ -66,29 +70,52 @@
     upstairs_thermostat_hvac_action:
       value_template: >-
         {{ state_attr('climate.upstairs_thermostat', 'hvac_action') }}
-    upstairs_thermostat_current_temperature:
-      value_template: >-
-        {{ state_attr('climate.upstairs_thermostat', 'current_temperature') }}
-      unit_of_measurement: "°C"
     upstairs_thermostat_target_temperature:
       value_template: >-
         {{ state_attr('climate.upstairs_thermostat', 'temperature') }}
       unit_of_measurement: "°C"
+    upstairs_thermostat_target_humidity:
+      value_template: >-
+        {{ state_attr('climate.upstairs_thermostat', 'humidity') }}
+      unit_of_measurement: "%"
     upstairs_thermostat_fan_state:
       value_template: >-
-        {{ state_attr('climate.upstairs_thermostat', 'fan_state') }}
-
+        {{ state_attr('climate.my_ecobee', 'fan') }}
+    upstairs_thermostat_fan_mode:
+      value_template: >-
+        {{ state_attr('climate.upstairs_thermostat', 'fan_mode') }}
+    upstairs_thermostat_humidity_mode:
+      value_template: >-
+        {% if is_state('climate.my_ecobee', 'unavailable') -%}
+          {% if states('upstairs_thermostat_target_humidity') > states('upstairs_thermostat_current_humidity') -%}
+            {{ "on" }}
+          {%- else -%}
+            {{ "off" }}
+          {%- endif %}
+        {% elif "humidifier" in state_attr('climate.my_ecobee', 'equipment_running') -%}
+        {{ "on" }}
+        {%- else -%}
+          {{ "off" }}
+        {%- endif %}
+        
     downstairs_thermostat_hvac_action:
       value_template: >-
         {{ state_attr('climate.downstairs_thermostat', 'hvac_action') }}
-    downstairs_thermostat_current_temperature:
-      value_template: >-
-        {{ state_attr('climate.downstairs_thermostat', 'current_temperature') }}
-      unit_of_measurement: "°C"
     downstairs_thermostat_target_temperature:
       value_template: >-
         {{ state_attr('climate.downstairs_thermostat', 'temperature') }}
       unit_of_measurement: "°C"
+    downstairs_thermostat_target_humidity:
+      value_template: >-
+        {{ state_attr('climate.downstairs_thermostat', 'humidity') }}
+      unit_of_measurement: "%"
+    downstairs_thermostat_current_humidity:
+      value_template: >-
+        {{ state_attr('climate.downstairs_thermostat', 'current_humidity') }}
+      unit_of_measurement: "%"
     downstairs_thermostat_fan_state:
       value_template: >-
         {{ state_attr('climate.downstairs_thermostat', 'fan_state') }}
+    downstairs_thermostat_fan_mode:
+      value_template: >-
+        {{ state_attr('climate.downstairs_thermostat', 'fan_mode') }}
