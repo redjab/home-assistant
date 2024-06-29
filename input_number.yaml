@@ -4,6 +4,7 @@ plant_alocasia_macrorrhizos:
     max: 40
     min: 3
     step: 1
+    unit_of_measurement: Days
 
 plant_grey_star_calathea:
     name: Grey Star Calathea days
@@ -11,6 +12,7 @@ plant_grey_star_calathea:
     max: 40
     min: 3
     step: 1
+    unit_of_measurement: Days
 
 plant_string_of_pearls:
     name: String of Pearls days
@@ -18,6 +20,7 @@ plant_string_of_pearls:
     max: 40
     min: 3
     step: 1
+    unit_of_measurement: Days
 
 plant_rhaphidophora_tetrasperma:
     name: Rhaphidophora Tetrasperma days
@@ -25,10 +28,84 @@ plant_rhaphidophora_tetrasperma:
     max: 40
     min: 3
     step: 1
+    unit_of_measurement: Days
 
-plant_calathea_unknown:
-    name: Calathea Unknown days
+plant_maranta_green:
+    name: Maranta Green days
+    mode: box
+    max: 35
+    min: 3
+    step: 1
+    unit_of_measurement: Days
+
+plant_jade_star_sansevieria:
+    name: Jade Star Sansevieria days
     mode: box
     max: 40
     min: 3
     step: 1
+    unit_of_measurement: Days
+
+plant_australis_lisa_hoya:
+    name: Australis Lisa Hoya days
+    mode: box
+    max: 40
+    min: 3
+    step: 1
+    unit_of_measurement: Days
+
+plant_krimson_queen_hoya:
+    name: Krimson Queen Hoya days
+    mode: box
+    max: 40
+    min: 3
+    step: 1
+    unit_of_measurement: Days
+
+plant_marion_calathea:
+    name: Marion Calathea days
+    mode: box
+    max: 40
+    min: 3
+    step: 1
+    unit_of_measurement: Days
+
+plant_bronze_venus_fern:
+    name: Bronze Venus Fern days
+    mode: box
+    max: 40
+    min: 3
+    step: 1
+    unit_of_measurement: Days
+
+plant_white_knight:
+    name: White Knight days
+    mode: box
+    max: 40
+    min: 3
+    step: 1
+    unit_of_measurement: Days
+
+plant_melo_alocasia:
+    name: Melo Alocasia days
+    mode: box
+    max: 40
+    min: 3
+    step: 1
+    unit_of_measurement: Days
+
+plant_pinstripe_calathea:
+    name: Pinstripe Calathea days
+    mode: box
+    max: 40
+    min: 3
+    step: 1
+    unit_of_measurement: Days
+
+plant_orbifolia_calathea:
+    name: Orbifolia Calathea days
+    mode: box
+    max: 40
+    min: 3
+    step: 1
+    unit_of_measurement: Days

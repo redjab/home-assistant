@@ -23,13 +23,36 @@
     entity_id: input_boolean.after_dark_offset
     service: input_boolean.turn_off
   mode: single
-
 - id: '1598234378624'
   alias: WebOS wake
   trigger:
-    - platform: webostv.turn_on
-      entity_id: media_player.living_room_tv
+  - platform: webostv.turn_on
+    entity_id: media_player.living_room_tv
   action:
-    - service: wake_on_lan.send_magic_packet
-      data:
-        mac: 20-17-42-20-4B-EB
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: 20-17-42-20-4B-EB
+- id: '1719678030074'
+  alias: Frigate Restart
+  description: ''
+  trigger:
+  - platform: time
+    at: 03:00:00
+  condition: []
+  action:
+  - service: mqtt.publish
+    data:
+      topic: frigate/restart
+  mode: single
+- id: '1719678498513'
+  alias: Reload homekit
+  description: ''
+  trigger:
+  - platform: time
+    at: 03:01:00
+  condition: []
+  action:
+  - service: homeassistant.reload_config_entry
+    data:
+      entry_id: 196984c64a4cbc913d9a328cd6b64e67
+  mode: single

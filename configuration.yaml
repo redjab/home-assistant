@@ -123,31 +123,31 @@ homeassistant:
   country: US
   packages: !include_dir_named packages
 
-panel_iframe:
- nodered:
-   title: 'Node-Red'
-   icon: 'mdi:shuffle-variant'
-   url: !secret nodered_url
- octoprint:
-   title: 'Octoprint'
-   icon: 'mdi:printer-3d'
-   url: !secret octoprint_url
- zwave:
-   title: 'Zwave'
-   icon: 'mdi:z-wave'
-   url: !secret zwave_url
- zigbee:
-   title: 'Zigbee'
-   icon: 'mdi:zigbee'
-   url: !secret zigbee_url
- unifi:
-   title: 'Unifi'
-   icon: 'mdi:wifi'
-   url: !secret unifi_url
- roborock:
-   title: 'Roborock'
-   icon: 'mdi:robot-vacuum'
-   url: !secret roborock_url
+# panel_iframe:
+#  nodered:
+#    title: 'Node-Red'
+#    icon: 'mdi:shuffle-variant'
+#    url: !secret nodered_url
+#  octoprint:
+#    title: 'Octoprint'
+#    icon: 'mdi:printer-3d'
+#    url: !secret octoprint_url
+#  zwave:
+#    title: 'Zwave'
+#    icon: 'mdi:z-wave'
+#    url: !secret zwave_url
+#  zigbee:
+#    title: 'Zigbee'
+#    icon: 'mdi:zigbee'
+#    url: !secret zigbee_url
+#  unifi:
+#    title: 'Unifi'
+#    icon: 'mdi:wifi'
+#    url: !secret unifi_url
+#  roborock:
+#    title: 'Roborock'
+#    icon: 'mdi:robot-vacuum'
+#    url: !secret roborock_url
 
 wake_on_lan:
 
@@ -261,26 +261,7 @@ sensor:
     - 'date_time_iso'
     - 'time_date'
     - 'time_utc'
-    - 'beat'
-# - platform: govee_ble_hci
-#   govee_devices:
-    # - mac: !secret govee_humidity_sensor_mac_1
-    #   name: Bedroom
-    # - mac: !secret govee_humidity_sensor_mac_2
-    #   name: Bathroom
-    #   hcitool_active: true
-- platform: systemmonitor
-  resources:
-    - type: disk_use_percent
-      arg: /
-    - type: disk_use
-      arg: /
-    - type: disk_free
-      arg: /
-    - type: processor_use
-    - type: memory_use_percent
-    - type: memory_use
-    - type: memory_free
+
 - platform: snmp
   version: '3'
   name: wan_in
@@ -342,7 +323,7 @@ sensor:
   max_age:
     days: 31
       
-sensor template sensors: !include template-sensors.yaml
+template: !include template-sensors.yaml
 
 utility_meter:
   utility_internet_hourly:

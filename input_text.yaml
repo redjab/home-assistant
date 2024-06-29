@@ -14,6 +14,42 @@ plant_rhaphidophora_tetrasperma:
     name: Rhaphidophora Tetrasperma pic
     initial: ""
 
-plant_calathea_unknown:
-    name: Calathea Unknown pic
+plant_maranta_green:
+    name: Maranta Green pic
+    initial: ""
+
+plant_jade_star_sansevieria:
+    name: Jade Star Sansevieria pic
+    initial: ""
+
+plant_australis_lisa_hoya:
+    name: Australis Lisa Hoya pic
+    initial: ""
+
+plant_krimson_queen_hoya:
+    name: Krimson Queen Hoya pic
+    initial: ""
+
+plant_marion_calathea:
+    name: Marion Calathea pic
+    initial: ""
+
+plant_bronze_venus_fern:
+    name: Bronze Venus Fern pic
+    initial: ""
+
+plant_white_knight:
+    name: White Knight pic
+    initial: ""
+
+plant_melo_alocasia:
+    name: Melo Alocasia pic
+    initial: ""
+
+plant_pinstripe_calathea:
+    name: Pinstripe Calathea pic
+    initial: ""
+
+plant_orbifolia_calathea:
+    name: Orbifolia Calathea pic
     initial: ""

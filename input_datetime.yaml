@@ -6,20 +6,78 @@ plant_alocasia_macrorrhizos:
 
 plant_grey_star_calathea:
     name: Grey Star Calathea last watered
+    icon: mdi:water
     has_date: true
     has_time: true
 
 plant_string_of_pearls:
     name: String of Pearls last watered
+    icon: mdi:water
     has_date: true
     has_time: true
 
 plant_rhaphidophora_tetrasperma:
     name: Rhaphidophora Tetrasperma last watered
+    icon: mdi:water
     has_date: true
     has_time: true
 
-plant_calathea_unknown:
-    name: Calathea Unknown last watered
+plant_maranta_green:
+    name: Maranta Green last watered
+    icon: mdi:water
+    has_date: true
+    has_time: true
+
+plant_jade_star_sansevieria:
+    name: Jade Star Sansevieria last watered
+    icon: mdi:water
+    has_date: true
+    has_time: true
+
+plant_australis_lisa_hoya:
+    name: Australis Lisa Hoya last watered
+    icon: mdi:water
+    has_date: true
+    has_time: true
+
+plant_krimson_queen_hoya:
+    name: Krimson Queen Hoya last watered
+    icon: mdi:water
+    has_date: true
+    has_time: true
+
+plant_marion_calathea:
+    name: Marion Calathea last watered
+    icon: mdi:water
+    has_date: true
+    has_time: true
+
+plant_bronze_venus_fern:
+    name: Bronze Venus Fern last watered
+    icon: mdi:water
+    has_date: true
+    has_time: true
+
+plant_white_knight:
+    name: White Knight last watered
+    icon: mdi:water
+    has_date: true
+    has_time: true
+
+plant_melo_alocasia:
+    name: Melo Alocasia last watered
+    icon: mdi:water
+    has_date: true
+    has_time: true
+
+plant_pinstripe_calathea:
+    name: Pinstripe Calathea last watered
+    icon: mdi:water
+    has_date: true
+    has_time: true
+
+plant_orbifolia_calathea:
+    name: Orbifolia Calathea last watered
+    icon: mdi:water
     has_date: true
     has_time: true

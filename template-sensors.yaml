@@ -1,91 +1,100 @@
-- platform: template
-  sensors:
-
-    minh_home:
-      value_template: >-
+- sensor:
+    - name: "Minh Home"
+      state: >-
         {{ is_state('device_tracker.phone_m_4a5g', 'home') or is_state('person.minh', 'home') }}
 
-    away:
-      value_template: >-
+    - name: "Away"
+      state: >-
         {% if is_state("input_boolean.guest_mode", "on") -%}
           {{ not is_state('person.guest', 'home') }}
         {%- else -%}
           {{ not is_state('person.minh', 'home') and not is_state('person.quynh_anh', 'home') }}
         {%- endif %}
 
-    router_up_time_hours:
-      friendly_name: 'Router uptime - Hours'
-      value_template: >-
+    - name: "Router Uptime - Hours"
+      state: >-
         {{ ((states('sensor.router_uptime')|int) / 60) | int }}
-    router_up_time_days:
-      friendly_name: 'Router uptime - Days'
-      value_template: >-
-        {{ ((states('sensor.router_up_time_hours')|int) / 24) | int }}
 
-    wan_in_mb:
-      value_template: >-
+    - name: "Router Uptime - Days"
+      state: >-
+        {{ ((states('sensor.router_uptime_hours')|int) / 24) | int }}
+
+    - name: "WAN In MB"
+      state: >-
         {{ states('sensor.wan_in')|float(default=0)/1000000 }}
-    wan_out_mb:
-      value_template: >-
+
+    - name: "WAN Out MB"
+      state: >-
         {{ states('sensor.wan_out')|float(default=0)/1000000 }}
-    wan_in_gb:
-      value_template: >-
+
+    - name: "WAN In GB"
+      state: >-
         {{ states('sensor.wan_in_mb')|float(default=0)/1000 }}
-    wan_out_gb:
-      value_template: >-
+
+    - name: "WAN Out GB"
+      state: >-
         {{ states('sensor.wan_out_mb')|float(default=0)/1000 }}
-    wan_mb:
-      value_template: >-
+
+    - name: "WAN MB"
+      state: >-
         {{ states('sensor.wan_in_mb')|float(default=0) + states('sensor.wan_out_mb')|float(default=0) }}
-    wan_gb:
-      value_template: >-
+
+    - name: "WAN GB"
+      state: >-
         {{ states('sensor.wan_in_gb')|float(default=0) + states('sensor.wan_out_gb')|float(default=0) }}
 
-    internet_hourly:
-      friendly_name: Hourly Internet Usage
-      unit_of_measurement: MB
-      value_template: >-
+    - name: "Hourly Internet Usage"
+      unique_id: sensor.internet_hourly
+      unit_of_measurement: "MB"
+      state: >-
         {{ (states('sensor.utility_internet_hourly')|float(default=0))|round(2) }}
-    internet_daily:
-      friendly_name: Daily Internet Usage
-      unit_of_measurement: GB
-      value_template: >-
+
+    - name: "Daily Internet Usage"
+      unique_id: sensor.internet_daily
+      unit_of_measurement: "GB"
+      state: >-
         {{ (states('sensor.utility_internet_daily')|float(default=0))|round(2) }}
-    internet_monthly:
-      friendly_name: Monthly Internet Usage
-      unit_of_measurement: GB
-      value_template: >-
+
+    - name: "Monthly Internet Usage"
+      unit_of_measurement: "GB"
+      unique_id: sensor.internet_monthly
+      state: >-
         {{ (states('sensor.utility_internet_monthly')|float(default=0))|round(2) }}
 
-    octoprint_print_time_done_at:
-      value_template: >-
+    - name: "Octoprint Print Time Done At"
+      state: >-
         {% if states('sensor.octoprint_print_time_left') is string -%}
           {% set times = states('sensor.octoprint_print_time_left').split(':') %}
-            {% if times | length >= 3 -%}
-              {% set seconds =  (times[0] | int) * 60 * 60 + (times[1] | int) * 60 + (times[2] | int) %}
-              {{ (as_timestamp(now()) + seconds) | timestamp_local }}
-            {%- endif %}
+          {% if times | length >= 3 -%}
+            {% set seconds =  (times[0] | int) * 60 * 60 + (times[1] | int) * 60 + (times[2] | int) %}
+            {{ (as_timestamp(now()) + seconds) | timestamp_local }}
+          {%- endif %}
         {%- endif %}
-      
-    upstairs_thermostat_hvac_action:
-      value_template: >-
+
+    - name: "Upstairs Thermostat HVAC Action"
+      state: >-
         {{ state_attr('climate.upstairs_thermostat', 'hvac_action') }}
-    upstairs_thermostat_target_temperature:
-      value_template: >-
-        {{ state_attr('climate.upstairs_thermostat', 'temperature') }}
+
+    - name: "Upstairs Thermostat Target Temperature"
       unit_of_measurement: "°C"
-    upstairs_thermostat_target_humidity:
-      value_template: >-
-        {{ state_attr('climate.upstairs_thermostat', 'humidity') }}
+      state: >-
+        {{ state_attr('climate.upstairs_thermostat', 'temperature') }}
+
+    - name: "Upstairs Thermostat Target Humidity"
       unit_of_measurement: "%"
-    upstairs_thermostat_fan_state:
-      value_template: >-
+      state: >-
+        {{ state_attr('climate.upstairs_thermostat', 'humidity') }}
+
+    - name: "Upstairs Thermostat Fan State"
+      state: >-
         {{ state_attr('climate.my_ecobee', 'fan') }}
-    upstairs_thermostat_fan_mode:
-      value_template: >-
+
+    - name: "Upstairs Thermostat Fan Mode"
+      state: >-
         {{ state_attr('climate.upstairs_thermostat', 'fan_mode') }}
-    upstairs_thermostat_humidity_mode:
-      value_template: >-
+
+    - name: "Upstairs Thermostat Humidity Mode"
+      state: >-
         {% if is_state('climate.my_ecobee', 'unavailable') -%}
           {% if states('upstairs_thermostat_target_humidity') > states('upstairs_thermostat_current_humidity') -%}
             {{ "on" }}
@@ -93,29 +102,92 @@
             {{ "off" }}
           {%- endif %}
         {% elif "humidifier" in state_attr('climate.my_ecobee', 'equipment_running') -%}
-        {{ "on" }}
+          {{ "on" }}
         {%- else -%}
           {{ "off" }}
         {%- endif %}
-        
-    downstairs_thermostat_hvac_action:
-      value_template: >-
+
+    - name: "Downstairs Thermostat HVAC Action"
+      state: >-
         {{ state_attr('climate.downstairs_thermostat', 'hvac_action') }}
-    downstairs_thermostat_target_temperature:
-      value_template: >-
-        {{ state_attr('climate.downstairs_thermostat', 'temperature') }}
+
+    - name: "Downstairs Thermostat Target Temperature"
       unit_of_measurement: "°C"
-    downstairs_thermostat_target_humidity:
-      value_template: >-
+      state: >-
+        {{ state_attr('climate.downstairs_thermostat', 'temperature') }}
+
+    - name: "Downstairs Thermostat Target Humidity"
+      unit_of_measurement: "%"
+      state: >-
         {{ state_attr('climate.downstairs_thermostat', 'humidity') }}
+
+    - name: "Downstairs Thermostat Current Humidity"
       unit_of_measurement: "%"
-    downstairs_thermostat_current_humidity:
-      value_template: >-
+      state: >-
         {{ state_attr('climate.downstairs_thermostat', 'current_humidity') }}
-      unit_of_measurement: "%"
-    downstairs_thermostat_fan_state:
-      value_template: >-
+
+    - name: "Downstairs Thermostat Fan State"
+      state: >-
         {{ state_attr('climate.downstairs_thermostat', 'fan_state') }}
-    downstairs_thermostat_fan_mode:
-      value_template: >-
+
+    - name: "Downstairs Thermostat Fan Mode"
+      state: >-
         {{ state_attr('climate.downstairs_thermostat', 'fan_mode') }}
+
+# - trigger:
+#   - platform: time_pattern
+#     hours: /1
+#     action:
+#       - service: weather.get_forecasts
+#         data:
+#           type: hourly
+#         target:
+#           entity_id: weather.my_ecobee
+#         response_variable: hourly
+#     sensor:
+#     - name: Weather forecast next hour
+#       unique_id: weather_forecast_next_hour
+#       state: "{{ hourly['weather.my_ecobee'].forecast[0] }}"
+#       unit_of_measurement: °C
+
+- sensor:
+    - name: "Plant Watering Schedule"
+      state: 0
+      attributes:
+        plant_info: >-
+          {% set today = as_timestamp(now()) %}
+          {% set watering_dates = namespace(dates=[]) %}
+
+          {% for state in states %}
+            {% if state.entity_id.startswith('input_datetime.plant') %}
+              {% set plant_last_watered = state.entity_id %}
+              {% set plant_name = state.name %}
+              {% set plant_index = plant_last_watered.split('.')[1] %}
+              {% set plant_watering_interval_entity_id = 'input_number.' + plant_index %}
+              {% set plant_watering_interval_state = states[plant_watering_interval_entity_id] %}
+
+              {% if plant_watering_interval_state is not none and plant_watering_interval_state.state is not none %}
+                {% set plant_watering_interval = plant_watering_interval_state.state | int %}
+
+                {% set last_watered_timestamp = as_timestamp(state.state) %}
+                {% if last_watered_timestamp is not none %}
+                  {% set next_watering_timestamp = last_watered_timestamp + (plant_watering_interval * 86400) %}
+                  {% set days_until_next_watering = ((next_watering_timestamp - today) / 86400) | int %}
+
+                  {% set days_between_watering = plant_watering_interval %}
+                  
+                  {% set watering_dates.dates = watering_dates.dates + [{
+                    'plant_name': plant_name | regex_replace('(?i)last water(ed)?', ''),
+                    'days_until_next_watering': days_until_next_watering,
+                    'days_between_watering': days_between_watering
+                  }] %}
+                {% endif %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+
+          {% set sorted_plants = watering_dates.dates | sort(attribute='days_until_next_watering') %}
+
+          {% for plant in sorted_plants %}
+            {{ plant.plant_name }}: next {{ plant.days_until_next_watering }} days, every {{ plant.days_between_watering }} days.
+          {% endfor %}
